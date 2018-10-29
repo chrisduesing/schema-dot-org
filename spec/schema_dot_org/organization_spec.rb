@@ -50,8 +50,6 @@ RSpec.describe Organization do
         ]
       )
 
-      pp public_law.to_json_struct
-
       expect(public_law.to_json_struct).to eq(
         "@type" => "Organization",
         'name' => "Public.Law",
