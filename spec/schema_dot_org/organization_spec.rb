@@ -22,6 +22,7 @@ RSpec.describe Organization do
           founder:           Person.new(name: 'Robb Shecter'),
           founding_date:     Date.new(2009, 3, 6),
           founding_location: Place.new(address: PostalAddress.new(street_address: '3300 Bloor Street')),
+          address:           PostalAddress.new(street_address: '150 Some address Suite 5', address_locality: 'New York', address_region: 'NY', postal_code: '12000', address_country: 'USA'),
           email:            'say_hi@public.law',
           url:              'https://www.public.law',
           logo:             'https://www.public.law/favicon-196x196.png',
@@ -39,6 +40,7 @@ RSpec.describe Organization do
         founder:           Person.new(name: 'Robb Shecter'),
         founding_date:     Date.new(2009, 3, 6),
         founding_location: Place.new(address: PostalAddress.new(street_address: '3300 Bloor Street')),
+        address:           PostalAddress.new(street_address: '150 Some address Suite 5', address_locality: 'New York', address_region: 'NY', postal_code: '12000', address_country: 'USA'),
         email:            'say_hi@public.law',
         url:              'https://www.public.law',
         logo:             'https://www.public.law/favicon-196x196.png',
@@ -48,6 +50,8 @@ RSpec.describe Organization do
         ]
       )
 
+      pp public_law.to_json_struct
+
       expect(public_law.to_json_struct).to eq(
         "@type" => "Organization",
         'name' => "Public.Law",
@@ -55,6 +59,14 @@ RSpec.describe Organization do
         'url' => "https://www.public.law",
         'logo' => "https://www.public.law/favicon-196x196.png",
         'foundingDate' => "2009-03-06",
+        'address' => {
+          '@type' => 'PostalAddress',
+          'streetAddress' => '150 Some address Suite 5',
+          'addressLocality' => 'New York',
+          'addressRegion' => 'NY',
+          'postalCode' => '12000',
+          'addressCountry' => 'USA'
+        },
         'founder' => {
           "@type" => "Person",
           'name' => "Robb Shecter"
